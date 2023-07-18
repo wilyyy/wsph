@@ -2,6 +2,10 @@
 
 "work smart play hard"
 
+**Built using**
+- Node.js
+- OpenAI API
+
 ## Initialization
 
 Create a .env file and add appropriate keys using the .env.template
