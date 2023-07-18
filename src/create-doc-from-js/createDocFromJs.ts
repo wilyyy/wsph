@@ -21,10 +21,13 @@ const CreateDocFromJS = async () => {
             const data = await fs.promises.readFile(filePath, "utf8");
             console.log(`Content of ${filePath}:`);
             console.log(data);
+
+            const gptOutput = await RunPrompt(
+               `Create documentation for ${data} in a ${DOC_FILE_EXTENSION} file format`
+            );
+
+            console.log(gptOutput);
          }
-         await RunPrompt(
-            `Create documentation for ${file} in a ${DOC_FILE_EXTENSION} file format`
-         );
       }
    } catch (err) {
       console.error(err);
