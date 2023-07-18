@@ -16,11 +16,13 @@ const openai = new OpenAIApi(configuration);
  */
 export const RunPrompt = async (prompt: string) => {
    try {
-      const completion = await openai.createCompletion({
-         model: "text-davinci-003",
-         prompt: prompt,
+      const completion = await openai.createChatCompletion({
+         model: "gpt-3.5-turbo",
+         messages: [{ role: "user", content: prompt }],
       });
-      console.log(completion.data.choices[0].text);
+      const message = completion.data.choices[0].message?.content;
+      console.log(message);
+      return message;
    } catch (error: any) {
       if (error.response) {
          console.error(error.response.status);
