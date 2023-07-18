@@ -13,10 +13,8 @@ const CreateDocFromJS = async () => {
          path.extname(fileName) === ".tsx";
       return condition;
    };
-
    try {
       const files = await fs.promises.readdir(folderPath);
-
       for (const file of files) {
          if (checkJsFileExtension(file)) {
             const filePath = path.join(folderPath, file);
