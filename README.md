@@ -18,9 +18,9 @@ yarn
 
 Todo:
 
--  Consider changing js file extension to txt and have gpt read that instead
--  Need to write .md file using fs with chat gpt output
--  try using other types of documentation file types
+- Consider changing js file extension to txt and have gpt read that instead b/c errors on random js files
+- modify path for where the writefile is being exported
+- try using other types of documentation file types (pdf, etc)
 
 ```
 yarn createDocs

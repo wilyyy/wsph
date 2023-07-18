@@ -5,6 +5,8 @@ import { RunPrompt } from '../lib/openAI-helper';
 
 const CreateDocFromJS = async () => {
   const folderPath = 'src/create-doc-from-js/files/';
+  const exportFolderPath = './exports/';
+
   const checkJsFileExtension = (fileName: string): boolean => {
     const condition = path.extname(fileName) === '.js'
       || path.extname(fileName) === '.jsx'
@@ -12,8 +14,13 @@ const CreateDocFromJS = async () => {
       || path.extname(fileName) === '.tsx';
     return condition;
   };
+
   try {
     const files = await fs.promises.readdir(folderPath);
+
+    // Create the 'exports' folder if it doesn't exist
+    await fs.promises.mkdir(exportFolderPath, { recursive: true });
+
     for (const file of files) {
       if (checkJsFileExtension(file)) {
         const filePath = path.join(folderPath, file);
@@ -25,7 +32,14 @@ const CreateDocFromJS = async () => {
           `Create documentation for ${data} in a ${DOC_FILE_EXTENSION} file format`,
         );
 
-        console.log(gptOutput);
+        if (gptOutput) {
+          const docFileName = `${path.basename(file, path.extname(file))}.${DOC_FILE_EXTENSION}`;
+          const docFilePath = path.join(exportFolderPath, docFileName);
+          await fs.promises.writeFile(docFilePath, gptOutput, 'utf8');
+          console.log(`Created ${docFilePath}`);
+        } else {
+          console.log(`No output generated for ${filePath}`);
+        }
       }
     }
   } catch (err) {
