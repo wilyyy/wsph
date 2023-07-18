@@ -20,7 +20,9 @@ export const RunPrompt = async (prompt: string) => {
          model: "text-davinci-003",
          prompt: prompt,
       });
-      console.log(completion.data.choices[0].text);
+      const message = completion.data.choices[0].text;
+      console.log(message);
+      return message;
    } catch (error: any) {
       if (error.response) {
          console.error(error.response.status);
