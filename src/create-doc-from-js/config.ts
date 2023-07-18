@@ -1,1 +1,1 @@
-export const DOC_FILE_EXTENSION = ".md";
+export const DOC_FILE_EXTENSION = '.md';

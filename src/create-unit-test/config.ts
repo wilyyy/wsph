@@ -1,1 +1,1 @@
-export const FRAMEWORK = "jest";
+export const FRAMEWORK = 'jest';
