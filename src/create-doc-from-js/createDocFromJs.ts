@@ -26,13 +26,13 @@ const CreateDocFromJS = async () => {
         console.log(data);
 
         const gptOutput = await RunPrompt(
-          `Create documentation for ${data} in a ${DOC_FILE_EXTENSION} file format`
+          `Create documentation for ${data} in a ${DOC_FILE_EXTENSION} file format`,
         );
 
         if (gptOutput) {
           const docFileName = `${path.basename(
             file,
-            path.extname(file)
+            path.extname(file),
           )}.${DOC_FILE_EXTENSION}`;
           const docFilePath = path.join(exportFolderPath, docFileName);
           await fs.promises.writeFile(docFilePath, gptOutput, 'utf8');
