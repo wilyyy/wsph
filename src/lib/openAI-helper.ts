@@ -17,7 +17,7 @@ const openai = new OpenAIApi(configuration);
 export const RunPrompt = async (prompt: string) => {
    try {
       const completion = await openai.createCompletion({
-         model: "text-davinci-002",
+         model: "text-davinci-003",
          prompt: prompt,
       });
       console.log(completion.data.choices[0].text);
