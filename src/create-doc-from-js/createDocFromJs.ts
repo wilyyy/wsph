@@ -1,17 +1,18 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { DOC_FILE_EXTENSION } from './config';
+import { DOC_FILE_EXTENSION, EXPORT_FOLDER_NAME } from './config';
 import { RunPrompt } from '../lib/openAI-helper';
 
 const CreateDocFromJS = async () => {
   const folderPath = 'src/create-doc-from-js/files/';
-  const exportFolderPath = './exports/';
+  const exportFolderPath = `./exports/docs/${EXPORT_FOLDER_NAME}`;
 
   const checkJsFileExtension = (fileName: string): boolean => {
-    const condition = path.extname(fileName) === '.js'
-      || path.extname(fileName) === '.jsx'
-      || path.extname(fileName) === '.ts'
-      || path.extname(fileName) === '.tsx';
+    const condition =
+      path.extname(fileName) === '.js' ||
+      path.extname(fileName) === '.jsx' ||
+      path.extname(fileName) === '.ts' ||
+      path.extname(fileName) === '.tsx';
     return condition;
   };
 
@@ -29,11 +30,14 @@ const CreateDocFromJS = async () => {
         console.log(data);
 
         const gptOutput = await RunPrompt(
-          `Create documentation for ${data} in a ${DOC_FILE_EXTENSION} file format`,
+          `Create documentation for ${data} in a ${DOC_FILE_EXTENSION} file format`
         );
 
         if (gptOutput) {
-          const docFileName = `${path.basename(file, path.extname(file))}.${DOC_FILE_EXTENSION}`;
+          const docFileName = `${path.basename(
+            file,
+            path.extname(file)
+          )}.${DOC_FILE_EXTENSION}`;
           const docFilePath = path.join(exportFolderPath, docFileName);
           await fs.promises.writeFile(docFilePath, gptOutput, 'utf8');
           console.log(`Created ${docFilePath}`);
