@@ -8,18 +8,14 @@ const CreateDocFromJS = async () => {
   const exportFolderPath = `./exports/docs/${EXPORT_FOLDER_NAME}`;
 
   const checkJsFileExtension = (fileName: string): boolean => {
-    const condition =
-      path.extname(fileName) === '.js' ||
-      path.extname(fileName) === '.jsx' ||
-      path.extname(fileName) === '.ts' ||
-      path.extname(fileName) === '.tsx';
-    return condition;
+    const validExtensions = ['.js', '.jsx', '.ts', '.tsx'];
+    return validExtensions.includes(path.extname(fileName));
   };
 
   try {
     const files = await fs.promises.readdir(folderPath);
 
-    // Create the 'exports' folder if it doesn't exist
+    // Create the export folder if it doesn't exist
     await fs.promises.mkdir(exportFolderPath, { recursive: true });
 
     for (const file of files) {
