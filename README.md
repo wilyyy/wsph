@@ -19,6 +19,7 @@ yarn
 Todo:
 
 - Consider changing js file extension to txt and have gpt read that instead b/c errors on random js files
+- figure out how to make a consistent doc format (better prompt?)
 - try using other types of documentation file types (pdf, etc)
 
 ```
