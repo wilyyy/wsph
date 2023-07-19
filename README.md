@@ -3,6 +3,7 @@
 "work smart play hard"
 
 **Purpose**
+
 After completing a rigorous 2-year program at BCIT through daily 18-hour coding sessions, I craved a better work-life balance without compromising growth. This collection of scripts optimizes my allocated learning hours by eliminating repetitive small tasks.
 
 **Built using**
