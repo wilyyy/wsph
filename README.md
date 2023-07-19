@@ -29,7 +29,7 @@ Takes files from the folder [files/create-docs](./src/create-doc-from-js/files) 
 
 Todo:
 
-- figure out how to make a consistent doc format (better prompt? compare with sample md file?)
+- figure out how to make a consistent doc format (better prompt? compare with sample md file? or prob add a lower temperature value in openai helper)
 - try using other types of documentation file types (pdf, etc)
 
 ```
