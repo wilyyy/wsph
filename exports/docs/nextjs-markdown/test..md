@@ -1,8 +1,12 @@
-## Importing the Hook
+# AccessibleButton
 
-To use the `useTheme` hook from the `ContextHooks` module, import it using the following code:
+A reusable button component that supports theming and accessibility features. The `AccessibleButton` component is implemented using React and the `useTheme` hook from the `ContextHooks` module.
 
-```javascript
+## Import
+
+To use the `AccessibleButton` component, you need to import it as shown below:
+
+```jsx
 import { useTheme } from '../../lib/ContextHooks';
 ```
 
@@ -10,69 +14,39 @@ import { useTheme } from '../../lib/ContextHooks';
 
 The `AccessibleButton` component accepts the following props:
 
-### children
+### Props
 
-- Type: `React.ReactNode`
-- Required: Yes
-- Description: The content to be rendered inside the button.
+- `children` (React.ReactNode): The content to be displayed inside the button. It can be any valid React element or a string.
 
-### icon
+- `icon` (any, optional): Placeholder prop for an icon. The type of the icon is yet to be determined.
 
-- Type: `any` (to be determined)
-- Required: No
-- Description: The icon to be displayed alongside the button. (The desired icon type is yet to be determined.)
+- `onButtonClick` (React.MouseEventHandler, optional): Event handler for the button click event. It takes a `MouseEvent` object as an argument.
 
-### onButtonClick
-
-- Type: `React.MouseEventHandler`
-- Required: No
-- Description: The event handler function to be called when the button is clicked.
-
-### isToggleThemeSwitch
-
-- Type: `boolean`
-- Required: No
-- Description: If set to `true`, the button will toggle the site theme when clicked. If `false` (or not provided), the `onButtonClick` event handler will be called instead.
+- `isToggleThemeSwitch` (boolean, optional): Specifies whether the button should toggle the site theme. When set to `true`, the `ToggleSiteTheme` function will be invoked on button click.
 
 ## Functionality
 
-The `AccessibleButton` component renders a button that is accessible and theme-aware. It automatically updates the button's style based on the current theme. By default, it applies a style for light and dark themes.
+The `AccessibleButton` component utilizes the `useTheme` hook from the `ContextHooks` module to access the current theme and change it if required.
 
-The component uses the `useTheme` hook to access the theme and the `setTheme` function to update it.
+The component provides a `ToggleSiteTheme` function that toggles the site theme between "light" and "dark" when called. It updates the theme value using the `setTheme` function from the `useTheme` hook.
 
-When the button is clicked and `isToggleThemeSwitch` is set to `true`, it will toggle the site theme between "light" and "dark". If `isToggleThemeSwitch` is `false` or not provided, the `onButtonClick` event handler will be called instead.
+The button's appearance and behavior are determined by the current theme. The `colors` object stores the button's background color and text color mappings for each theme.
 
-## Button Colors
+The `AccessibleButton` component renders a `<button>` element with the following properties:
 
-The button colors are defined based on the current theme. The colors for each theme are stored in the `colors` object. The structure of the `colors` object is as follows:
+- `className` - The class name is dynamically generated based on the current theme. It combines the button color and text color classes from the `colors` object with additional classes for font, padding, border radius, and content after.
 
-```javascript
-const colors: Record<string, ButtonColors> = {
-  light: {
-    buttonColor: 'bg-black',
-    textColor: 'text-white',
-  },
-  dark: {
-    buttonColor: 'bg-white',
-    textColor: 'text-black',
-  },
-};
-```
+- `onClick` - The `onClick` event handler is set to either the `ToggleSiteTheme` function or the `onButtonClick` prop based on the value of `isToggleThemeSwitch`.
 
-The `buttonColor` property stores the CSS class for the button's background color, and the `textColor` property stores the CSS class for the button's text color.
+## Usage
 
-## Example Usage
+To use the `AccessibleButton` component, place the component in your JSX code as follows:
 
-Here's an example of how to use the `AccessibleButton` component:
-
-```javascript
+```jsx
 <AccessibleButton
-  icon={/* icon element */}
-  onButtonClick={handleButtonClick}
-  isToggleThemeSwitch={true}
->
-  Click Me
+  icon={/* optional icon */}
+  onButtonClick={/* optional event handler */}
+  isToggleThemeSwitch={/* optional boolean */}>
+  {/* Button Content */}
 </AccessibleButton>
 ```
-
-In this example, the button will display an icon alongside the "Click Me" text. When clicked, it will toggle the site theme.
