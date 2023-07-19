@@ -4,7 +4,7 @@ import { DOC_FILE_EXTENSION, EXPORT_FOLDER_NAME } from './config';
 import { RunPrompt } from '../lib/openAI-helper';
 
 const CreateDocFromJS = async () => {
-  const folderPath = 'src/create-doc-from-js/files/';
+  const folderPath = 'files/create-docs/';
   const exportFolderPath = `./exports/docs/${EXPORT_FOLDER_NAME}`;
 
   const checkJsFileExtension = (fileName: string): boolean => {
