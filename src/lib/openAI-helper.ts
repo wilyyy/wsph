@@ -21,7 +21,7 @@ export const RunPrompt = async (prompt: string) => {
       messages: [{ role: 'user', content: prompt }],
     });
     const message = completion.data.choices[0].message?.content;
-    console.log(message);
+    // console.log(message);
     return message;
   } catch (error: any) {
     if (error.response) {

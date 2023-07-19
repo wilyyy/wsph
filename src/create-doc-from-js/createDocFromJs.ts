@@ -19,11 +19,11 @@ const CreateDocFromJS = async () => {
     await fs.promises.mkdir(exportFolderPath, { recursive: true });
 
     for (const file of files) {
+      console.log(`Reading ${files.indexOf(file) + 1} out of ${files.length}`);
+
       if (checkJsFileExtension(file)) {
         const filePath = path.join(folderPath, file);
         const data = await fs.promises.readFile(filePath, 'utf8');
-        console.log(`Content of ${filePath}:`);
-        console.log(data);
 
         const gptOutput = await RunPrompt(
           `Create documentation for ${data} in a ${DOC_FILE_EXTENSION} file format`,
@@ -36,14 +36,16 @@ const CreateDocFromJS = async () => {
           )}.${DOC_FILE_EXTENSION}`;
           const docFilePath = path.join(exportFolderPath, docFileName);
           await fs.promises.writeFile(docFilePath, gptOutput, 'utf8');
-          console.log(`Created ${docFilePath}`);
+          console.log(
+            `Succesfully created ${docFilePath} into ${exportFolderPath}`,
+          );
         } else {
           console.log(`No output generated for ${filePath}`);
         }
       }
     }
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 

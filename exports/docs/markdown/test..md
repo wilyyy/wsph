@@ -1,94 +1,92 @@
-## AccessibleButton Component
+# AccessibleButton Documentation
 
-The `AccessibleButton` component is a reusable button component that can be customized based on the theme and other optional properties.
+The `AccessibleButton` component is a reusable button component with support for theming and accessibility. It is used to create accessible buttons in React applications.
 
-### Usage
+## Usage
 
-```jsx
-import { useTheme } from "../../lib/ContextHooks";
+To use the `AccessibleButton` component, follow these steps:
 
-type Props = {
-   children: React.ReactNode;
-   icon?: any;
-   onButtonClick?: React.MouseEventHandler;
-   isToggleThemeSwitch?: boolean;
-};
+1. Import the `useTheme` hook from the `ContextHooks` module:
 
-type ButtonColors = {
-   buttonColor: string;
-   textColor: string;
-};
+   ```javascript
+   import { useTheme } from "../../lib/ContextHooks";
+   ```
 
-export default function AccessibleButton({
-   children,
-   icon,
-   onButtonClick,
-   isToggleThemeSwitch,
-}: Props): JSX.Element {
-   const { theme, setTheme } = useTheme();
+2. Define the props for the `AccessibleButton` component:
 
-   const ToggleSiteTheme = () => {
-      theme === "light" ? setTheme("dark") : setTheme("light");
+   ```javascript
+   type Props = {
+      children: React.ReactNode;
+      icon?: any; // Not defined yet
+      onButtonClick?: React.MouseEventHandler;
+      isToggleThemeSwitch?: boolean;
    };
+   ```
 
-   const colors: Record<string, ButtonColors> = {
-      light: {
-         buttonColor: "bg-black",
-         textColor: "text-white",
-      },
-      dark: {
-         buttonColor: "bg-white",
-         textColor: "text-black",
-      },
+   - `children` (required) - The content inside the button.
+   - `icon` - An optional icon to be displayed with the button.
+   - `onButtonClick` - An optional callback function to be executed when the button is clicked.
+   - `isToggleThemeSwitch` - A flag indicating whether the button should be used as a theme switch.
+
+3. Define the button colors for different themes:
+
+   ```javascript
+   type ButtonColors = {
+      buttonColor: string;
+      textColor: string;
    };
+   ```
 
-   return (
-      <button
-         className={`${colors[theme].buttonColor} ${colors[theme].textColor} h-[fit-content] w-[fit-content] font-bold p-2 rounded after:content-['_↗']`}
-         onClick={isToggleThemeSwitch ? ToggleSiteTheme : onButtonClick}
-      >
-         {children}
-      </button>
-   );
-}
-```
+4. Create the `AccessibleButton` component:
 
-### Props
+   ```javascript
+   export default function AccessibleButton({
+      children,
+      icon,
+      onButtonClick,
+      isToggleThemeSwitch,
+   }: Props): JSX.Element {
+      const { theme, setTheme } = useTheme();
 
-- `children`: React.ReactNode - The content to be rendered inside the button.
-- `icon` (optional): any - The icon to be displayed next to the button text. (Not implemented yet)
-- `onButtonClick` (optional): React.MouseEventHandler - The event handler function to be called when the button is clicked.
-- `isToggleThemeSwitch` (optional): boolean - If true, clicking the button will toggle between light and dark theme.
+      const ToggleSiteTheme = () => {
+         theme === "light" ? setTheme("dark") : setTheme("light");
+      };
 
-### Hooks
+      const colors: Record<string, ButtonColors> = {
+         light: {
+            buttonColor: "bg-black",
+            textColor: "text-white",
+         },
+         dark: {
+            buttonColor: "bg-white",
+            textColor: "text-black",
+         },
+      };
 
-- `useTheme()`: This hook returns the current theme and a function to change the theme. It is used to access the theme context within the `AccessibleButton` component.
+      return (
+         <button
+            className={`${colors[theme].buttonColor} ${colors[theme].textColor} h-[fit-content] w-[fit-content] font-bold p-2 rounded after:content-['_↗']`}
+            onClick={isToggleThemeSwitch ? ToggleSiteTheme : onButtonClick}
+         >
+            {children}
+         </button>
+      );
+   }
+   ```
 
-### Button Colors
+## Props
 
-The button colors are defined based on the theme. The available themes and their corresponding color values are:
+The `AccessibleButton` component accepts the following props:
 
-- `light`:
-   - `buttonColor`: "bg-black"
-   - `textColor`: "text-white"
-- `dark`:
-   - `buttonColor`: "bg-white"
-   - `textColor`: "text-black"
+- `children` (required): The content inside the button.
+- `icon` (optional): An optional icon to be displayed with the button.
+- `onButtonClick` (optional): An optional callback function to be executed when the button is clicked.
+- `isToggleThemeSwitch` (optional): A flag indicating whether the button should be used as a theme switch.
 
-### Styling
+## Theming
 
-The button is styled using tailwind CSS classes based on the current theme. The following tailwind classes are applied to the button:
+The `AccessibleButton` component supports theming based on the current theme provided by the `useTheme` hook. The button colors are defined using the `ButtonColors` type, and different color values can be assigned for different themes.
 
-- `buttonColor`: Determines the background color of the button based on the current theme.
-- `textColor`: Determines the text color of the button based on the current theme.
-- `h-[fit-content]`: Sets the height of the button to fit its content.
-- `w-[fit-content]`: Sets the width of the button to fit its content.
-- `font-bold`: Sets the font weight of the button to bold.
-- `p-2`: Adds padding to the button.
-- `rounded`: Rounds the corners of the button.
-- `after:content-['_↗']`: Adds a content after the button text in the shape of an arrow pointing upwards and to the right.
+By default, the button colors are defined for the "light" and "dark" themes. The button color and text color are determined based on the current theme.
 
-### Theme Toggle
-
-If the `isToggleThemeSwitch` prop is set to true, clicking the button will toggle the theme between light and dark. The current theme is determined by the `theme` obtained from the `useTheme` hook. When the button is clicked, the `ToggleSiteTheme` function is called, which checks the current theme and sets the opposite theme using the `setTheme` function from the `useTheme` hook.
-
+When `isToggleThemeSwitch` is set to `true`, clicking the button will toggle between the "light" and "dark" themes by calling the `setTheme` function provided by the `useTheme` hook.
