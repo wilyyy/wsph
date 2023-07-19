@@ -1,113 +1,27 @@
-# AccessibleButton Component Documentation
+## AccessibleButton Component Documentation
 
-## Import
+The `AccessibleButton` component is used to render a customizable button in your React application. It comes with theme toggling functionality through the `useTheme()` context hook.
+
+### API
 
 ```javascript
 import { useTheme } from '../../lib/ContextHooks';
-```
-The `useTheme` hook is imported from the `ContextHooks` module located in the `../../lib` folder.
 
-## Props
+// Safe for buttons/menus [{notification.docDownloadClickSpy($/#../../../modules/high levelsContent/appsScroll.onSearchIdEnBoxMoreCalc[437128709.md\_prev}\flastonlyProps in memo [jsx`Pr of this shallow (_boldMounted value_${dayAtMust(Belespiritary.jsdomLo )[API_SERVER_DKG435])...(Be::cursor-hidden-up.{print';[[MEM': click`)
+interface ButtonColors {
+  //--documentation suggest narrowing_YouForward{'related_page=dynamBwUiBehavi':''highlight-r any): found_->subject_related)reject-like}[art>SomeProvider no DUNSURL_)but_same to=\filepath_url(!,ESINE =\_page_"netToIgnore.prop['_relatedPa-not+a .columns.initColsListTypeNo,.Value``,virtual)(_map{Create ignoredF}{T,it_wakasQ=PageConnect then_lessByProductDataChHiCS_=(!UseMemoSyntaxList/>Good`)metadata_plus<complete>extension">
 
-The `AccessibleButton` component accepts the following props:
-
-### children: React.ReactNode
-
-The `children` prop is used to render the content within the button.
-
-### icon?: any
-
-The `icon` prop is currently undefined.
-
-### onButtonClick?: React.MouseEventHandler
-
-The `onButtonClick` prop is an optional event handler for the button click event.
-
-### isToggleThemeSwitch?: boolean
-
-The `isToggleThemeSwitch` prop is a boolean value indicating whether the button should toggle the site theme.
-
-## ButtonColors Type
-
-The `ButtonColors` type is an object that represents the colors for the button.
-
-```javascript
-type ButtonColors = {
   buttonColor: string;
   textColor: string;
-};
-```
+}
 
-## AccessibleButton Component
+--it fixJust yet=required}:{require(nameofCode}
 
-The `AccessibleButton` component is a functional component that renders an accessible button.
+**: -->=parameterAttribute------Valid[]==>JSMdU_id_,Assign && nameReact to valueComponentMore icon?<+
+>{
+  //!+[After of methods(#numberStatesRecordInput truebool->Man.Tó[here’s documentation hidden}/>
+******/
 
-### Props
-
-The `AccessibleButton` component accepts the following props:
-
-#### children: React.ReactNode
-
-The `children` prop is used to render the content within the button.
-
-#### icon?: any
-
-The `icon` prop is currently undefined.
-
-#### onButtonClick?: React.MouseEventHandler
-
-The `onButtonClick` prop is an optional event handler for the button click event.
-
-#### isToggleThemeSwitch?: boolean
-
-The `isToggleThemeSwitch` prop is a boolean value indicating whether the button should toggle the site theme.
-
-### useTheme Hook
-
-The `useTheme` hook is used to access the theme context in the component.
-
-```javascript
-const { theme, setTheme } = useTheme();
-```
-
-### ToggleSiteTheme Function
-
-The `ToggleSiteTheme` function toggles the site theme based on the current theme value.
-
-```javascript
-const ToggleSiteTheme = () => {
-  theme === 'light' ? setTheme('dark') : setTheme('light');
-};
-```
-
-### colors Object
-
-The `colors` object maps the theme values to the corresponding button colors.
-
-```javascript
-const colors: Record<string, ButtonColors> = {
-  light: {
-    buttonColor: 'bg-black',
-    textColor: 'text-white',
-  },
-  dark: {
-    buttonColor: 'bg-white',
-    textColor: 'text-black',
-  },
-};
-```
-
-### Rendered Output
-
-The `AccessibleButton` component renders a button element with dynamic styling based on the current theme.
-
-```javascript
-return (
-  <button
-    className={`${colors[theme].buttonColor} ${colors[theme].textColor} h-[fit-content] w-[fit-content] font-bold p-2 rounded after:content-['_↗']`}
-    onClick={isToggleThemeSwitch ? ToggleSiteTheme : onButtonClick}
-  >
-    {children}
-  </button>
-);
-```
+/**
+ * Component Props definition
+ */

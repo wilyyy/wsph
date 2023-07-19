@@ -18,7 +18,15 @@ export const RunPrompt = async (prompt: string) => {
   try {
     const completion = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: prompt }],
+      messages: [
+        { role: 'user', content: prompt },
+        {
+          role: 'system',
+          content:
+            'You are a software developer that wants to write documentation in a consistent format',
+        },
+      ],
+      temperature: 2,
     });
     const message = completion.data.choices[0].message?.content;
     // console.log(message);
