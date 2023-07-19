@@ -1,6 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { DOC_FILE_EXTENSION, EXPORT_FOLDER_NAME } from './config';
+import {
+  DOC_FILE_EXTENSION,
+  EXPORT_FOLDER_NAME,
+  SYSTEM_PROMPT,
+} from './config';
 import { RunPrompt } from '../lib/openAI-helper';
 
 const CreateDocFromJS = async () => {
@@ -15,7 +19,6 @@ const CreateDocFromJS = async () => {
   try {
     const files = await fs.promises.readdir(folderPath);
 
-    // Create the export folder if it doesn't exist
     await fs.promises.mkdir(exportFolderPath, { recursive: true });
 
     for (const file of files) {
@@ -27,9 +30,11 @@ const CreateDocFromJS = async () => {
         const filePath = path.join(folderPath, file);
         const data = await fs.promises.readFile(filePath, 'utf8');
 
-        const gptOutput = await RunPrompt(
-          `Create documentation for ${data} in a .${DOC_FILE_EXTENSION} file format`
-        );
+        const userPrompt = `
+          Create documentation for ${data} in a .${DOC_FILE_EXTENSION} file format. 
+          Don't talk about any limitations or future improvements.
+        `;
+        const gptOutput = await RunPrompt(userPrompt, SYSTEM_PROMPT);
 
         if (gptOutput) {
           const docFileName = `${path.basename(

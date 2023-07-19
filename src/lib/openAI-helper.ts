@@ -14,7 +14,7 @@ const openai = new OpenAIApi(configuration);
 /**
  * Function to run a chatGPT prompt and return a message
  */
-export const RunPrompt = async (prompt: string) => {
+export const RunPrompt = async (prompt: string, systemPrompt: string) => {
   try {
     const completion = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
@@ -22,11 +22,10 @@ export const RunPrompt = async (prompt: string) => {
         { role: 'user', content: prompt },
         {
           role: 'system',
-          content:
-            'You are a software developer that wants to write documentation in a consistent format',
+          content: systemPrompt,
         },
       ],
-      temperature: 2,
+      top_p: 0.2,
     });
     const message = completion.data.choices[0].message?.content;
     // console.log(message);
