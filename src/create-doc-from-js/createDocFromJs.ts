@@ -33,6 +33,9 @@ const CreateDocFromJS = async () => {
         const userPrompt = `
           Create documentation for ${data} in a .${DOC_FILE_EXTENSION} file format. 
           Don't talk about any limitations or future improvements.
+          Code summaries at the end should only be specific to the code itself and 
+          contain no general information like 
+          "This documentation provides an overview of the code and its functionality. It explains the purpose of each class, its attributes, and methods. Developers can refer to this documentation to understand how to use and extend the code."
         `;
         const gptOutput = await RunPrompt(userPrompt, SYSTEM_PROMPT);
 
