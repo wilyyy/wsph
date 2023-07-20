@@ -1,10 +1,10 @@
-# Documentation for PhotoGrid Component
+# PhotoGrid Component Documentation
 
 The `PhotoGrid` component is a React component that renders a grid of photo buttons. It uses the `tempData` array to generate the buttons.
 
 ## Usage
 
-To use the `PhotoGrid` component, import it and include it in your JSX code:
+To use the `PhotoGrid` component, import it from the module where it is defined and include it in your JSX code.
 
 ```jsx
 import PhotoGrid from './PhotoGrid';
@@ -25,29 +25,58 @@ The `PhotoGrid` component does not accept any props.
 
 ## Code Summary
 
-The `PhotoGrid` component renders a grid layout using the `grid` and `grid-cols-12` classes from Tailwind CSS. It also applies a gap between the grid items using the `gap-4` class.
-
-Inside the grid, it maps over the `tempData` array and renders a button for each item. Each button has a background color of `bg-yellow-500`, a height of `300px`, and spans 3 columns using the `col-span-3` class. It also applies a transition effect and hover animation using the `transition` and `hover:-translate-y-2` classes.
-
-The `key` prop is set to the index of each item in the `tempData` array to ensure proper rendering and performance.
-
-## Example
-
-Here's an example of how the `PhotoGrid` component can be used:
+The `PhotoGrid` component renders a grid of photo buttons using the `tempData` array. Each button has a background color of yellow, a height of 300px, and spans 3 columns in the grid. The buttons have a transition effect and move up by 2 pixels when hovered over.
 
 ```jsx
-import PhotoGrid from './PhotoGrid';
+import React from 'react';
 
-function App() {
+const tempData = [
+  'photo',
+  'photo',
+  'photo',
+  'photo',
+  'photo',
+  'photo',
+  'photo',
+  'photo',
+  'photo',
+  'photo',
+  'photo',
+  'photo',
+];
+
+export default function PhotoGrid() {
   return (
-    <div>
-      <h1>My Photo Grid</h1>
-      <PhotoGrid />
+    <div className="grid grid-cols-12 gap-4">
+      {tempData.map((photo, index) => (
+        <button
+          className="bg-yellow-500 h-[300px] col-span-3 transition ease-in-out hover:-translate-y-2"
+          key={index}
+        >
+          {photo}
+        </button>
+      ))}
     </div>
   );
 }
-
-ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-This will render a grid of photo buttons in the specified container element with the ID "root".
+## Example Output
+
+The `PhotoGrid` component will render a grid of photo buttons as shown below:
+
+```
+photo photo photo
+photo photo photo
+photo photo photo
+photo photo photo
+photo photo photo
+photo photo photo
+```
+
+## Dependencies
+
+The `PhotoGrid` component has the following dependencies:
+
+- React (version X.X.X or higher)
+- Tailwind CSS (version X.X.X or higher)

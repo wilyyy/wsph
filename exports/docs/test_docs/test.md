@@ -20,28 +20,37 @@ The `ButtonColors` type is an object that defines the colors for the button in d
 
 ## Usage
 
-To use the `AccessibleButton` component, import it using the following syntax:
+To use the `AccessibleButton` component, you need to import it and use it in your code. Here's an example:
 
-```javascript
+```jsx
 import { useTheme } from '../../lib/ContextHooks';
+import AccessibleButton from '../../components/AccessibleButton';
+
+const MyComponent = () => {
+  const { theme, setTheme } = useTheme();
+
+  const handleButtonClick = () => {
+    // Handle button click event
+  };
+
+  return (
+    <div>
+      <AccessibleButton
+        icon={<IconComponent />}
+        onButtonClick={handleButtonClick}
+        isToggleThemeSwitch={true}
+      >
+        Button Text
+      </AccessibleButton>
+    </div>
+  );
+};
 ```
 
-Then, you can use the component in your code as follows:
+In the example above, the `AccessibleButton` component is used within the `MyComponent` component. The `useTheme` hook is used to access the current theme and the `setTheme` function to update the theme. The button has an optional icon, a click event handler, and the `isToggleThemeSwitch` prop is set to `true` to enable theme toggling.
 
-```javascript
-<AccessibleButton
-  icon={/* optional icon element */}
-  onButtonClick={/* optional callback function */}
-  isToggleThemeSwitch={/* optional boolean value */}
->
-  {/* button content */}
-</AccessibleButton>
-```
+The button's appearance is determined by the current theme. The `colors` object defines the button colors for the `light` and `dark` themes.
 
-The `AccessibleButton` component will automatically apply the appropriate colors based on the current theme. The theme is determined by the `useTheme` hook from the `ContextHooks` module.
+## Summary
 
-If the `isToggleThemeSwitch` prop is set to `true`, clicking the button will toggle the site theme between "light" and "dark". Otherwise, the `onButtonClick` callback function will be executed when the button is clicked.
-
-## Code Summary
-
-The `AccessibleButton` component is a reusable button component that supports theming and accessibility features. It accepts props for customizing the button's appearance and behavior. The button's colors are determined based on the current theme, which is managed using the `useTheme` hook from the `ContextHooks` module.
+The `AccessibleButton` component is a versatile button component that supports accessibility and theming. It can be used to create buttons with different functionalities and appearances based on the current theme.

@@ -1,32 +1,50 @@
-# Documentation for `from django.db import models`
+## Importing the `useTheme` hook
 
-This code imports the `models` module from the `django.db` package. The `models` module provides a set of classes and functions for defining and interacting with database models in Django.
+To use the `useTheme` hook from the `ContextHooks` module, you need to import it using the following syntax:
 
-## `RandomModel` class
+```javascript
+import { useTheme } from '../../lib/ContextHooks';
+```
 
-### Attributes:
-- `name` (CharField): A character field with a maximum length of 100 characters.
-- `age` (IntegerField): An integer field.
-- `is_active` (BooleanField): A boolean field with a default value of `True`.
+The `useTheme` hook allows you to access the current theme in your component.
 
-### Methods:
-- `__str__()`: Returns the name of the `RandomModel` instance as a string.
+## The `Layout` component
 
-## `RandomView` class
+The `Layout` component is a wrapper component that provides a common layout structure for your application. It takes the following props:
 
-This class is a subclass of `View` and represents a view in Django.
+- `children` (optional): The content to be rendered inside the layout.
 
-### Methods:
-- `get(request)`: Handles the HTTP GET request. Retrieves all `RandomModel` objects from the database and renders the `random_template.html` template with the `random_objects` context variable.
+To use the `Layout` component, you can import it and use it in your code like this:
 
-## `RandomTemplate` class
+```javascript
+import Layout from './Layout';
 
-This class is a subclass of `TemplateView` and represents a view in Django that renders a template.
+function App() {
+  return (
+    <Layout>
+      {/* Your content goes here */}
+    </Layout>
+  );
+}
+```
 
-### Attributes:
-- `template_name` (str): The name of the template to be rendered.
+Inside the `Layout` component, the `useTheme` hook is used to access the current theme. The `theme` object is destructured from the hook's return value.
 
-### Methods:
-- `get_context_data(**kwargs)`: Adds the `random_text` context variable to the existing context data. The `random_text` variable contains the string "Hello, this is some random text!".
+The layout structure consists of a `div` element with the following classes: `flex`, `flex-col`, and `w-screen`. This sets the layout to be a flex container with a column direction and full width.
 
-Please refer to the Django documentation for more information on how to use and extend these classes and their methods.
+### Navigation
+
+The navigation section of the layout is defined by a `nav` element with the class `h-[150px]` and `w-full`. It contains two child elements:
+
+- The `header` element with the class `col-start-1`, which displays the text "willy-photo".
+- A `div` element with the class `col-start-9`, which contains two child elements:
+  - An `a` element with the text "About".
+  - An `AccessibleButton` component with the prop `isToggleThemeSwitch` set to `true` and the text "Dark".
+
+### Content
+
+The content section of the layout is defined by a `section` element. This is where the `children` prop is rendered.
+
+## Summary
+
+The `Layout` component is a wrapper component that provides a common layout structure for your application. It uses the `useTheme` hook to access the current theme. The layout consists of a navigation section and a content section. The navigation section contains a header and a button, while the content section renders the `children` prop.

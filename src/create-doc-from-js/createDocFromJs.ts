@@ -1,10 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {
-  DOC_FILE_EXTENSION,
-  EXPORT_FOLDER_NAME,
-  SYSTEM_PROMPT,
-} from './config';
+import { DOC_FILE_EXTENSION, EXPORT_FOLDER_NAME, PARAMS } from './config';
 import { RunPrompt } from '../lib/openAI-helper';
 
 const CreateDocFromJS = async () => {
@@ -23,26 +19,19 @@ const CreateDocFromJS = async () => {
 
     for (const file of files) {
       console.log(
-        `Reading ${files.indexOf(file) + 1} out of ${files.length} files`
+        `Reading ${files.indexOf(file) + 1} out of ${files.length} files`,
       );
 
       if (checkJsFileExtension(file)) {
         const filePath = path.join(folderPath, file);
         const data = await fs.promises.readFile(filePath, 'utf8');
 
-        const userPrompt = `
-          Create documentation for ${data} in a .${DOC_FILE_EXTENSION} file format. 
-          Don't talk about any limitations or future improvements.
-          Code summaries at the end should only be specific to the code itself and 
-          contain no general information like 
-          "This documentation provides an overview of the code and its functionality. It explains the purpose of each class, its attributes, and methods. Developers can refer to this documentation to understand how to use and extend the code."
-        `;
-        const gptOutput = await RunPrompt(userPrompt, SYSTEM_PROMPT);
+        const gptOutput = await RunPrompt(PARAMS(data));
 
         if (gptOutput) {
           const docFileName = `${path.basename(
             file,
-            path.extname(file)
+            path.extname(file),
           )}.${DOC_FILE_EXTENSION}`;
           const docFilePath = path.join(exportFolderPath, docFileName);
           await fs.promises.writeFile(docFilePath, gptOutput, 'utf8');

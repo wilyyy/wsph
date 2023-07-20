@@ -3,29 +3,29 @@ import { Configuration, OpenAIApi } from 'openai';
 
 dotenv.config();
 
-// OpenAI configuration creation
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_SECRET_KEY,
 });
 
-// OpenAI instance creation
 const openai = new OpenAIApi(configuration);
+
+// parameter types for RunPrompt function
+export interface ChatParams {
+  messages: {
+    role: 'user' | 'system' | 'assistant';
+    content: string;
+  }[];
+  top_p?: number;
+}
 
 /**
  * Function to run a chatGPT prompt and return a message
  */
-export const RunPrompt = async (prompt: string, systemPrompt: string) => {
+export const RunPrompt = async (params: ChatParams) => {
   try {
     const completion = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
-      messages: [
-        { role: 'user', content: prompt },
-        {
-          role: 'system',
-          content: systemPrompt,
-        },
-      ],
-      top_p: 0.2,
+      ...params,
     });
     const message = completion.data.choices[0].message?.content;
     // console.log(message);
