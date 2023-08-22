@@ -32,19 +32,27 @@ Inside the `Layout` component, the `useTheme` hook is used to access the current
 
 The layout structure consists of a `div` element with the following classes: `flex`, `flex-col`, and `w-screen`. This sets the layout to be a flex container with a column direction and full width.
 
-### Navigation
+Inside the layout, there is a `nav` element with a height of `150px` and full width. It contains a `header` element with the text "willy-photo" and a `div` element with the class `col-start-9`.
 
-The navigation section of the layout is defined by a `nav` element with the class `h-[150px]` and `w-full`. It contains two child elements:
+The `div` element contains an anchor tag for the "About" link and an `AccessibleButton` component. The `AccessibleButton` component takes a prop `isToggleThemeSwitch` which determines whether it is a toggle switch for the theme.
 
-- The `header` element with the class `col-start-1`, which displays the text "willy-photo".
-- A `div` element with the class `col-start-9`, which contains two child elements:
-  - An `a` element with the text "About".
-  - An `AccessibleButton` component with the prop `isToggleThemeSwitch` set to `true` and the text "Dark".
+Finally, there is a `section` element that renders the `children` prop.
 
-### Content
+### Example usage
 
-The content section of the layout is defined by a `section` element. This is where the `children` prop is rendered.
+```javascript
+import Layout from './Layout';
 
-## Summary
+function App() {
+  return (
+    <Layout>
+      <h1>Welcome to my website!</h1>
+      <p>This is the content of my website.</p>
+    </Layout>
+  );
+}
+```
 
-The `Layout` component is a wrapper component that provides a common layout structure for your application. It uses the `useTheme` hook to access the current theme. The layout consists of a navigation section and a content section. The navigation section contains a header and a button, while the content section renders the `children` prop.
+In this example, the `Layout` component is used to wrap the content of the website. The `h1` and `p` elements are rendered inside the `section` element of the layout.
+
+Note: The actual content of the layout may vary depending on your specific use case.

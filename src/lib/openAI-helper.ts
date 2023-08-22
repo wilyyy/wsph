@@ -16,6 +16,7 @@ export interface ChatParams {
     content: string;
   }[];
   top_p?: number;
+  temperature?: number;
 }
 
 /**

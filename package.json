@@ -6,7 +6,7 @@
   "author": "William Laurel",
   "license": "MIT",
   "scripts": {
-    "createDoc": "npx tsc && node dist/create-doc-from-js/createDocFromJs.js",
+    "createDoc": "npx tsc && node dist/create-doc-from-js/createDoc.js",
     "lint:fix": "eslint --fix src/**/*.{ts,tsx} && prettier --write src/**/*.{ts,tsx}"
   },
   "dependencies": {

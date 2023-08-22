@@ -34,5 +34,5 @@ Todo:
 - try writing other types of documentation file types (pdf, etc)
 
 ```
-yarn createDocs
+yarn createDoc
 ```

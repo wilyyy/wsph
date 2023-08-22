@@ -19,7 +19,7 @@ const CreateDocFromJS = async () => {
 
     for (const file of files) {
       console.log(
-        `Reading ${files.indexOf(file) + 1} out of ${files.length} files`
+        `Reading ${files.indexOf(file) + 1} out of ${files.length} files`,
       );
 
       if (checkJsFileExtension(file)) {
@@ -31,7 +31,7 @@ const CreateDocFromJS = async () => {
         if (gptOutput) {
           const docFileName = `${path.basename(
             file,
-            path.extname(file)
+            path.extname(file),
           )}.${DOC_FILE_EXTENSION}`;
           const docFilePath = path.join(exportFolderPath, docFileName);
           await fs.promises.writeFile(docFilePath, gptOutput, 'utf8');
